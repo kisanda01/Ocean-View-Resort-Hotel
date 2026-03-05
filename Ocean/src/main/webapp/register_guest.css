@@ -1,0 +1,257 @@
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root {
+    --ocean:        #0b3d5e;
+    --ocean-mid:    #1a5f87;
+    --ocean-light:  #d6ecf7;
+    --sand:         #c9a55a;
+    --sand-light:   #fdf6e8;
+    --red-dark:     #c0392b;
+    --text-dark:    #0d2535;
+    --text-mid:     #3a5a72;
+    --text-light:   #7a9fb5;
+    --border:       #cddee9;
+    --bg:           #eaf3f9;
+    --card-bg:      #ffffff;
+    --shadow:       0 12px 45px rgba(11,61,94,0.13);
+    --radius:       16px;
+    --radius-sm:    9px;
+    --font-display: 'Libre Baskerville', Georgia, serif;
+    --font-body:    'DM Sans', 'Segoe UI', sans-serif;
+    --t:            0.25s ease;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    min-height: 100vh;
+    padding: 0;
+}
+
+.page-wrapper {
+    min-height: 100vh;
+    padding: 30px 20px 55px;
+    background:
+        radial-gradient(ellipse at 5% 0%,   rgba(11,61,94,0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 95% 100%, rgba(201,165,90,0.08) 0%, transparent 50%),
+        var(--bg);
+}
+
+.top-bar {
+    max-width: 640px;
+    margin: 0 auto 20px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--ocean);
+    font-weight: 600;
+    font-size: 13.5px;
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 30px;
+    padding: 9px 20px 9px 14px;
+    box-shadow: 0 2px 10px rgba(11,61,94,0.08);
+    transition: background var(--t), color var(--t), border-color var(--t),
+                box-shadow var(--t), transform var(--t);
+}
+
+.back-btn:hover {
+    background: var(--ocean);
+    color: #fff;
+    border-color: var(--ocean);
+    box-shadow: 0 4px 18px rgba(11,61,94,0.22);
+    transform: translateY(-1px);
+}
+
+.back-arrow {
+    font-size: 16px;
+    transition: transform var(--t);
+}
+
+.back-btn:hover .back-arrow { transform: translateX(-3px); }
+
+.form-container {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.form-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    border-top: 4px solid var(--ocean);
+    animation: cardIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cardIn {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-header {
+    background: var(--ocean);
+    padding: 32px 40px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 60%, rgba(201,165,90,0.13) 0%, transparent 55%),
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.card-header::after {
+    content: '';
+    display: block;
+    width: 45px;
+    height: 3px;
+    background: var(--sand);
+    border-radius: 2px;
+    margin: 12px auto 0;
+}
+
+.header-icon {
+    font-size: 38px;
+    display: block;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+}
+
+.card-header h2 {
+    font-family: var(--font-display);
+    color: #fff;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: 0.3px;
+}
+
+.card-header p {
+    color: rgba(255,255,255,0.55);
+    font-size: 13.5px;
+}
+
+/* ── Form body ── */
+.form-body {
+    padding: 30px 40px 36px;
+}
+
+/* ── Input groups ── */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 18px;
+}
+
+.input-row {
+    display: flex;
+    gap: 18px;
+}
+
+.input-row .input-group { flex: 1; }
+
+label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ocean);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+textarea {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-dark);
+    background: #f4f9fd;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    outline: none;
+    width: 100%;
+    transition: border-color var(--t), background var(--t), box-shadow var(--t);
+}
+
+input:focus, textarea:focus {
+    border-color: var(--ocean-mid);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(26,95,135,0.10);
+}
+
+input::placeholder, textarea::placeholder { color: var(--text-light); }
+
+textarea { resize: vertical; min-height: 88px; line-height: 1.65; }
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.register-btn, .clear-btn {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 14px 20px;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background var(--t), box-shadow var(--t), transform var(--t);
+}
+
+.register-btn {
+    flex: 2;
+    background: var(--ocean);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(11,61,94,0.22);
+}
+
+.register-btn:hover {
+    background: #0d4a72;
+    box-shadow: 0 6px 20px rgba(11,61,94,0.30);
+    transform: translateY(-1px);
+}
+
+.register-btn:active { transform: translateY(0); }
+
+.clear-btn {
+    flex: 1;
+    background: #f1f5f8;
+    color: var(--text-mid);
+    border: 1.5px solid var(--border);
+}
+
+.clear-btn:hover {
+    background: #fdecea;
+    color: var(--red-dark);
+    border-color: #f5c6c2;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 560px) {
+    .page-wrapper   { padding: 18px 12px 44px; }
+    .card-header    { padding: 26px 22px 22px; }
+    .form-body      { padding: 22px 20px 28px; }
+    .input-row      { flex-direction: column; gap: 0; }
+    .button-group   { flex-direction: column; }
+    .register-btn,
+    .clear-btn      { flex: unset; width: 100%; }
+}
